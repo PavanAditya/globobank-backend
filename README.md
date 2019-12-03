@@ -1,4 +1,4 @@
-# globobank_backend
+# GloboBank Backend
 
 > A NodeJs backend written for displaying and maintaining the analytics data of GloboBank
 
