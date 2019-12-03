@@ -26,6 +26,10 @@ let userSchema = new Schema({
     createdOn: {
         type: Date,
         default: Date.now
+    },
+    lastUpdatedOn: {
+        type: Date,
+        default: null
     }
 })
 
