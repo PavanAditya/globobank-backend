@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const app = express()
-const api = require('./api')
+const api = require('./api/routes')
 
 // ! configuring port number
 app.set('port', (process.env.PORT || 3000))
@@ -21,14 +21,14 @@ app.use(morgan('dev'))
 // eslint-disable-next-line no-unused-vars
 app.use(function (req, res, next) {
     const err = new Error('Not Found')
-    err.status = 404
     err.message = 'Not Found Error'
-    resizeBy.json(err)
+    err.status = 404
+    res.json(err)
 })
 // ! handling routes not found
 
 // ! mongodb connection
-mongoose.connect('fysfjfdh')
+mongoose.connect('mongodb+srv://pavanaditya_ms:adish789@globobank-9egit.mongodb.net/globobank-db?retryWrites=true&w=majority')
 const db = mongoose.connection
 // ! mongodb connection
 

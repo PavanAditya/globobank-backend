@@ -2,11 +2,31 @@ const User = require('../../models/users.models')
 
 module.exports = function (router) {
 
+    // ! Fetch All the Users
+    router.get('/user/all', function (req, res) {
+        User.find({}).exec()
+            .then(docs =>
+                docs === null
+                    ? res.status(204).json({
+                        message: 'Success, No Users found',
+                        data: docs
+                    })
+                    : res.status(200).json({
+                        message: 'Success',
+                        data: docs
+                    }))
+            .catch(err => res.status(500).json({
+                message: 'Internal Server Error while fetching the Users',
+                error: err
+            }))
+    })
+    // ! Fetch All the Users
+
     // ! Fetch User By User ID
     router.get('/user/:id', function (req, res) {
         User.findById(req.params.id).exec()
             .then(docs =>
-                docs === {}
+                docs === null
                     ? res.status(204).json({
                         message: 'Success, No User found',
                         data: docs
@@ -26,7 +46,7 @@ module.exports = function (router) {
     router.get('/user/email/:email', function (req, res) {
         User.find({ 'emailId': req.params.email }).exec()
             .then(docs =>
-                docs === {}
+                docs === null
                     ? res.status(204).json({
                         message: 'Success, No User found',
                         data: docs
@@ -43,7 +63,7 @@ module.exports = function (router) {
     // ! Fetch User by Email ID
 
     // ! Create a New User
-    router.post('/new/user', function (req, res) {
+    router.post('/user/new', function (req, res) {
         let user = new User(req.body)
         user.save(function (err, user) {
             err
