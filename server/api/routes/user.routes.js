@@ -86,9 +86,9 @@ module.exports = function (router) {
             // firstName: req.body.firstName,
             // lastName: req.body.lastName,
             // emailId: req.body.emailId,
-            // password: req.body.password,
+            password: req.body.password,
             isActive: req.body.isActive,
-            lastUpdatedOn: Date.now
+            lastUpdatedOn: Date.now()
         }
         User.update(qry, doc, function (err, resp) {
             err
