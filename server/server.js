@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const app = express()
+const cors = require('cors')
 const api = require('./api/routes')
 
 // ! configuring port number
@@ -10,6 +11,7 @@ app.set('port', (process.env.PORT || 3000))
 // ! configuring port number
 
 // ! required configurations for the app
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/api/v1', api)
